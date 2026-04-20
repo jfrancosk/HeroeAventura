@@ -4,15 +4,15 @@ class Heroe {
     estaVivo: boolean;
     fechaCreación: Date;
     habilidades: string;
-    estadisticas: string;
+    estadisticas: {fuerza: number;agilidad: number};
 
     constructor(nombre: string, habilidades: string) {
         this.nombre = nombre;
         this.nivel = 1;
         this.estaVivo = true;
-        this.fechaCreación = (new Date);
+        this.fechaCreación = new Date();
         this.habilidades = habilidades;
-        this.estadisticas = "100";
+        this.estadisticas = {fuerza: 10, agilidad: 10};
     }
     
     recibirDanio(puntos: number): void {
@@ -22,8 +22,10 @@ class Heroe {
          }
     }
 
-    subirNivel(): void {
+    subirNivel(): string{
         this.nivel = this.nivel + 1
+        this.estadisticas.agilidad+= 2;
+        return "El Heroe " + this.nombre +" ha subido a nivel " + this.nivel;
     }
 
     generarFicha(): string {
